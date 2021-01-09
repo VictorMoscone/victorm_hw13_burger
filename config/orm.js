@@ -30,13 +30,25 @@ const orm = {
       query += escaping(value.length);
       query += ') ';
   
-      console.log(query);
-  
       connection.query(query, value, (err, res) => {
         if (err) throw err;
         cb(res);
       });
     },
-};
+
+    updateOne(tableName, newVal, targetVal, cb) {
+      let query = `UPDATE ${tableName}`;
+  
+      query += ' SET ';
+      query += newVal;
+      query += ' WHERE ';
+      query += targetVal;
+  
+      connection.query(query, (err, res) => {
+        if (err) throw err;
+        cb(res);
+      });
+    },
+  };
   
   module.exports = orm;
