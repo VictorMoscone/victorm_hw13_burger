@@ -13,38 +13,37 @@ const escaping = (totalEscapes) => {
 
 const orm = {
     selectAll(tableName, cb) {
-      const query = `SELECT * FROM ${tableName};`;
-      connection.query(query, (err, res) => {
+      const query = "SELECT * FROM ?";
+      connection.query(query,
+        [
+          tableName,
+        ], (err, res) => {
         if (err) throw err;
         cb(res);
       });
     },
 
     insertOne(tableName, subtype, value, cb) {
-      let query = `INSERT INTO ${tableName}`;
-  
-      query += ' (';
-      query += subtype.toString();
-      query += ') ';
-      query += 'VALUES (';
-      query += escaping(value.length);
-      query += ') ';
-  
-      connection.query(query, value, (err, res) => {
+      let query = "INSERT INTO ? (?) VALUES (?)";  
+      connection.query(query, 
+        [
+          tableName,
+          subtype.toString(),
+          escaping(value.length),
+        ], (err, res) => {
         if (err) throw err;
         cb(res);
       });
     },
 
     updateOne(tableName, newVal, targetVal, cb) {
-      let query = `UPDATE ${tableName}`;
-  
-      query += ' SET ';
-      query += newVal;
-      query += ' WHERE ';
-      query += targetVal;
-  
-      connection.query(query, (err, res) => {
+      let query = "UPDATE ? SET ? WHERE ?";  
+      connection.query(query, 
+        [
+          tableName,
+          newVal,
+          targetVal,
+        ], (err, res) => {
         if (err) throw err;
         cb(res);
       });
