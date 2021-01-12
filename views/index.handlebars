@@ -12,7 +12,13 @@
             {{#each burgers}}
                 {{#unless devoured}}
                     <div class="text-center">
-                        <h5>{{this.burger_name}}</h5>
+                        <h5>{{this.burger_name}}
+                            <button 
+                                type="submit" 
+                                class="btn btn-danger mt-2">
+                                Devour it!
+                            </button>
+                        </h5>
                     </div>
                 {{/unless}}
             {{/each}}
