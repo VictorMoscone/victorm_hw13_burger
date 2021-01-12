@@ -48,28 +48,30 @@
 </div>
 
 <script type="text/javascript">
+    //Below is the code that allows us to create a new burger for our menu.
     const burgButton = document.getElementById('newBurger');
 
     burgButton.addEventListener('submit', (e) => {
         e.preventDefault();
-
-    const newBName = {
-      newBurgerText: document.getElementsByName('newBurgerText')[0].value.trim()
-    }
-    console.log(newBName);
-
-    fetch("/api/burgers", {
-      method: "POST",
-      headers: {
-        'Accept': 'application/json',
-        'Content-Type': 'application/json'
-      },
-
-      body: JSON.stringify(newBName)
+        //We're taking the input value and trimming it, then saving it into an object.
+        const newBName = {
+            newBurgerText: document.getElementsByName('newBurgerText')[0].value.trim()
+        }
+        //We run a post fetch, which runs the insertOne function.
+        fetch("/api/burgers", {
+            method: "POST",
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+        },
+        //This provides the insertOne function with the value we defined earlier.
+        body: JSON.stringify(newBName)
+        })
+        .then((response) => {
+            //Resets the text box; essentially it's feedback for the user.
+            document.getElementsByName('newBurgerText')[0].value = ''
+            //Reloads page. Almost redundant, but whatever.
+            location.reload()
+        });
     })
-      .then((response) => {
-        document.getElementsByName('newBurgerText')[0].value = ''
-        location.reload()
-      });
-  })
 </script>
