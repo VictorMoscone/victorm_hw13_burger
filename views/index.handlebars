@@ -52,12 +52,24 @@
 
     burgButton.addEventListener('submit', (e) => {
         e.preventDefault();
-        console.log("test")
 
-    // Grabs the value of the textarea that goes by the name, "plan"
     const newBName = {
       newBurgerText: document.getElementsByName('newBurgerText')[0].value.trim()
     }
     console.log(newBName);
+
+    fetch("/api/burgers", {
+      method: "POST",
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+      },
+
+      body: JSON.stringify(newBName)
+    })
+      .then((response) => {
+        document.getElementsByName('newBurgerText')[0].value = ''
+        location.reload()
+      });
   })
 </script>

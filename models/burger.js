@@ -6,8 +6,8 @@ const burger = {
         cb(res));
     },
 
-    insertOne(subtype, value, cb) {
-      orm.insertOne('burgers', subtype, value, (res) => 
+    insertOne(value, cb) {
+      orm.insertOne(value, (res) => 
         cb(res));
     },
   
