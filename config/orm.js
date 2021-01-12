@@ -13,7 +13,7 @@ const escaping = (totalEscapes) => {
 
 const orm = {
     selectAll(tableName, cb) {
-      const query = "SELECT * FROM ?";
+      const query = "SELECT * FROM ??";
       connection.query(query,
         [
           tableName,
