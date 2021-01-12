@@ -15,7 +15,8 @@
                         <h5>{{this.burger_name}}
                             <button 
                                 type="submit" 
-                                class="btn btn-danger mt-2">
+                                class="btn btn-danger mt-2 devourButton"
+                                id="burger{{this.id}}">
                                 Devour it!
                             </button>
                         </h5>
@@ -77,7 +78,20 @@
             //Resets the text box; essentially it's feedback for the user.
             document.getElementsByName('newBurgerText')[0].value = ''
             //Reloads page. Almost redundant, but whatever.
-            location.reload()
+            location.reload();
         });
     })
+
+    const devourButton = document.querySelectorAll('.devourButton');
+
+    for (let i = 0; i < devourButton.length; i++) {
+        devourButton[i].addEventListener('click', (e) => {
+            e.preventDefault();
+            {{!-- const buttonId = this.id
+            console.log(buttonId) --}}
+            console.log("Hi")
+
+        });
+    };
+
 </script>
