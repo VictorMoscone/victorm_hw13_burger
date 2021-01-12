@@ -7,8 +7,8 @@ const orm = {
         [
           tableName,
         ], (err, res) => {
-        if (err) throw err;
-        cb(res);
+          if (err) throw err;
+          cb(res);
       });
     },
 
@@ -18,21 +18,19 @@ const orm = {
         [
           value,
         ], (err, res) => {
-        if (err) throw err;
-        cb(res);
+          if (err) throw err;
+          cb(res);
       });
     },
 
-    updateOne(tableName, newVal, targetVal, cb) {
-      let query = "UPDATE ? SET ? WHERE ?";  
+    updateOne(targetVal, cb) {
+      let query = "UPDATE burgers SET devoured = true WHERE ?";  
       connection.query(query, 
-        [
-          tableName,
-          newVal,
-          targetVal,
-        ], (err, res) => {
-        if (err) throw err;
-        cb(res);
+        [{
+         id: targetVal,
+        }], (err, res) => {
+          if (err) throw err;
+          cb(res);
       });
     },
   };

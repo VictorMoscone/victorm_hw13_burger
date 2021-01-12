@@ -11,8 +11,8 @@ const burger = {
         cb(res));
     },
   
-    updateOne(newVal, targetVal, cb) {
-      orm.updateOne('burgers', newVal, targetVal, (res) =>
+    updateOne(targetVal, cb) {
+      orm.updateOne(targetVal, (res) =>
         cb(res));
     },
   };

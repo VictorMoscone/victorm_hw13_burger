@@ -16,7 +16,7 @@
                             <button 
                                 type="submit" 
                                 class="btn btn-danger mt-2 devourButton"
-                                id="burger{{this.id}}">
+                                id="{{this.id}}burger">
                                 Devour it!
                             </button>
                         </h5>
@@ -87,10 +87,22 @@
     for (let i = 0; i < devourButton.length; i++) {
         devourButton[i].addEventListener('click', (e) => {
             e.preventDefault();
-            {{!-- const buttonId = this.id
-            console.log(buttonId) --}}
-            console.log("Hi")
+            const buttonId = parseInt(event.target.id);
 
+            fetch(`/api/burgers/${buttonId}`, {
+                method: "PUT",
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json'
+                },
+            }).then((response) => {
+                if (response.ok) {
+                    console.log("Good Job!");
+                    location.reload();
+                } else {
+                    alert("Something went wrong!");
+                };
+            });
         });
     };
 
